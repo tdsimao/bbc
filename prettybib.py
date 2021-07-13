@@ -86,7 +86,7 @@ def norm_booktitle(title):
 
 
 def check_year(entry, _):
-    """Check the sanitiy of a year."""
+    """Check the sanity of a year."""
     try:
         year = int(entry['year'])
 
@@ -471,7 +471,7 @@ FIELD_CHECKS = {
 
 
 def check_field(entry, field, try_fix, try_find=False):
-    """Check if a field in in the entry, if not add a TODO."""
+    """Check if a field is in the entry, if not add a TODO."""
     ignore_list = entry.get('ignore', "").split(",")
 
     if field not in entry or entry[field] == 'TODO':
@@ -568,7 +568,7 @@ def check_inproceedings(entry, try_fix):
 
 
 def check_techreport(entry, try_fix):
-    """Check and fix inproceedings entries."""
+    """Check and fix techreport entries."""
     check_field(entry, 'month', try_fix, try_find=True)
     check_field(entry, 'year', try_fix, try_find=True)
     check_field(entry, 'address', try_fix, try_find=True)
@@ -577,7 +577,7 @@ def check_techreport(entry, try_fix):
 
 
 def check_phdthesis(entry, try_fix):
-    """Check and fix inproceedings entries."""
+    """Check and fix phdthesis entries."""
     check_field(entry, 'year', try_fix, try_find=True)
     check_field(entry, 'address', try_fix, try_find=True)
     check_field(entry, 'school', try_fix, try_find=True)
