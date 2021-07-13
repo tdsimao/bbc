@@ -3,7 +3,7 @@
 """BibTex checker and formater.
 
 This is a scripts that formats bibtex in a uniform way, orders it by the
-authors surnames and checkes the records have all they need.
+authors surnames and checks the records have all they need.
 """
 
 import argparse
@@ -687,12 +687,12 @@ def normalize_authors(author_field):
 def check_database(database, try_fix):
     """Check the database entries.
 
-    Goes through the bib database and checks if everyting is
-    as it shoudl be.
+    Goes through the bib database and checks if everything is
+    as it should be.
 
     Returns:
-        Dictionaries of chached author, journal and proceedings names, so they
-        can be later checked for near duplicites.
+        Dictionaries of cached author, journal and proceedings names, so they
+        can be later checked for near duplicates.
     """
 
     authors, journals, booktitles = {}, {}, {}
@@ -700,7 +700,7 @@ def check_database(database, try_fix):
     titles = {}
 
     for entry in database.entries:
-        # normalize the vaues
+        # normalize the values
         for key, value in entry.items():
             entry[key] = re.sub(r"\s+", " ", value)
 
@@ -777,8 +777,8 @@ def look_for_misspellings(values, name, threshold=0.8):
 def main():
     """Main function of the script.
 
-    Loads the bib file, does the chcecking on it and prints out
-    sorted and formated database.
+    Loads the bib file, does the checking on it and prints out
+    sorted and formatted database.
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -789,7 +789,7 @@ def main():
         help="Optional output file.")
     parser.add_argument(
         "--try-fix", default=False, action="store_true",
-        help="Flag to search information to fix the dtabase.")
+        help="Flag to search information to fix the database.")
     parser.add_argument(
         "--anthologies", type=str, nargs='+',
         help="List of BibTeX files with know papers.")
