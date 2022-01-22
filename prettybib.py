@@ -156,7 +156,7 @@ def check_pages(entry, _):
     return False
 
 
-def check_isbn(entry, try_fix):
+def check_isbn(entry, try_fix, _):
     """Check and format ISBN.
 
     More information about ISBN:
@@ -234,7 +234,7 @@ def _fix_based_on_isbn(isbn_string, entry):
 ISSN_REGEX = re.compile(r"^\d{4}-?\d{3}[\dxX]$")
 
 
-def check_issn(entry, try_fix):
+def check_issn(entry, try_fix, _):
     """Check ISSN number."""
     issn_str = entry['issn']
     if ISSN_REGEX.match(issn_str):
@@ -404,7 +404,7 @@ def search_crossref_for_doi(title):
 DOI_PREFIX = re.compile(r"^[0-9]{2}\.[0-9]{4,5}$")
 
 
-def check_doi(entry, try_fix):
+def check_doi(entry, try_fix, _):
     if 'doi' not in entry:
         return False
     doi_ok = True
@@ -470,12 +470,13 @@ FIELD_CHECKS = {
 }
 
 
-def check_field(entry, field, try_fix, try_find=False):
+def check_field(entry, field, try_fix, disable_todo, try_find=False):
     """Check if a field is in the entry, if not add a TODO."""
     ignore_list = entry.get('ignore', "").split(",")
 
     if field not in entry or entry[field] == 'TODO':
-        entry[field] = 'TODO'
+        if not disable_todo:
+            entry[field] = 'TODO'
         if try_fix and try_find and 'title' in entry:
             norm_title = normalize_title(entry['title'])
             if norm_title in CITATION_DATABASE:
@@ -492,7 +493,7 @@ def check_field(entry, field, try_fix, try_find=False):
             return True
 
         err_message(entry, "Missing field '{}'".format(field))
-        if field in FIELD_CHECKS:
+        if field in FIELD_CHECKS and field in entry:
             return FIELD_CHECKS[field](entry, try_fix) or field in ignore_list
         return False
     if field in FIELD_CHECKS:
@@ -500,7 +501,7 @@ def check_field(entry, field, try_fix, try_find=False):
     return True
 
 
-def check_article(entry, try_fix):
+def check_article(entry, try_fix, disable_todo):
     """Check and fix article entries."""
     if 'journal' not in entry:
         err_message(entry, "Journal title is missing.")
@@ -525,62 +526,62 @@ def check_article(entry, try_fix):
                     entry['url'] = "https://arxiv.org/{}".format(
                         entry['volume'])
 
-            check_field(entry, 'url', try_fix)
-            check_field(entry, 'volume', try_fix)
+            check_field(entry, 'url', try_fix, disable_todo)
+            check_field(entry, 'volume', try_fix, disable_todo)
             # TODO check whether link and volume agree
         else:
             everything_ok = True
-            everything_ok &= check_field(entry, 'doi', try_fix, try_find=True)
-            everything_ok &= check_field(entry, 'issn', try_fix)
+            everything_ok &= check_field(entry, 'doi', try_fix, disable_todo, try_find=True)
+            everything_ok &= check_field(entry, 'issn', try_fix, disable_todo)
             if 'volume' not in entry:
-                everything_ok &= check_field(entry, 'number', try_fix)
-            everything_ok &= check_field(entry, 'pages', try_fix)
-            everything_ok &= check_field(entry, 'publisher', try_fix)
-            everything_ok &= check_field(entry, 'address', try_fix)
-            everything_ok &= check_field(entry, 'url', try_fix)
+                everything_ok &= check_field(entry, 'number', try_fix, disable_todo)
+            everything_ok &= check_field(entry, 'pages', try_fix, disable_todo)
+            everything_ok &= check_field(entry, 'publisher', try_fix, disable_todo)
+            everything_ok &= check_field(entry, 'address', try_fix, disable_todo)
+            everything_ok &= check_field(entry, 'url', try_fix, disable_todo)
 
             if try_fix and not everything_ok and 'doi' in entry and entry["doi"] != "TODO":
                 try_fix_with_doi(entry, "journal")
 
 
-def check_book(entry, try_fix):
+def check_book(entry, try_fix, disable_todo):
     """Check and fix book entries."""
-    check_field(entry, 'isbn', try_fix)
-    check_field(entry, 'publisher', try_fix)
-    check_field(entry, 'year', try_fix)
-    check_field(entry, 'url', try_fix)
+    check_field(entry, 'isbn', try_fix, disable_todo)
+    check_field(entry, 'publisher', try_fix, disable_todo)
+    check_field(entry, 'year', try_fix, disable_todo)
+    check_field(entry, 'url', try_fix, disable_todo)
 
 
-def check_inproceedings(entry, try_fix):
+def check_inproceedings(entry, try_fix, disable_todo):
     """Check and fix inproceedings entries."""
     everything_ok = True
-    everything_ok &= check_field(entry, 'doi', try_fix, try_find=True)
-    everything_ok &= check_field(entry, 'booktitle', try_fix, try_find=True)
-    everything_ok &= check_field(entry, 'month', try_fix, try_find=True)
-    everything_ok &= check_field(entry, 'year', try_fix, try_find=True)
-    everything_ok &= check_field(entry, 'address', try_fix, try_find=True)
-    everything_ok &= check_field(entry, 'pages', try_fix, try_find=True)
-    everything_ok &= check_field(entry, 'publisher', try_fix, try_find=True)
-    everything_ok &= check_field(entry, 'url', try_fix)
+    everything_ok &= check_field(entry, 'doi', try_fix, disable_todo, try_find=True)
+    everything_ok &= check_field(entry, 'booktitle', try_fix, disable_todo, try_find=True)
+    everything_ok &= check_field(entry, 'month', try_fix, disable_todo, try_find=True)
+    everything_ok &= check_field(entry, 'year', try_fix, disable_todo, try_find=True)
+    everything_ok &= check_field(entry, 'address', try_fix, disable_todo, try_find=True)
+    everything_ok &= check_field(entry, 'pages', try_fix, disable_todo, try_find=True)
+    everything_ok &= check_field(entry, 'publisher', try_fix, disable_todo, try_find=True)
+    everything_ok &= check_field(entry, 'url', try_fix, disable_todo)
 
     if try_fix and not everything_ok and 'doi' in entry and entry["doi"] != "TODO":
         try_fix_with_doi(entry, "inproceedings")
 
 
-def check_techreport(entry, try_fix):
+def check_techreport(entry, try_fix, disable_todo):
     """Check and fix techreport entries."""
-    check_field(entry, 'month', try_fix, try_find=True)
-    check_field(entry, 'year', try_fix, try_find=True)
-    check_field(entry, 'address', try_fix, try_find=True)
-    check_field(entry, 'institution', try_fix, try_find=True)
-    check_field(entry, 'url', try_fix)
+    check_field(entry, 'month', try_fix, disable_todo, try_find=True)
+    check_field(entry, 'year', try_fix, disable_todo, try_find=True)
+    check_field(entry, 'address', try_fix, disable_todo, try_find=True)
+    check_field(entry, 'institution', try_fix, disable_todo, try_find=True)
+    check_field(entry, 'url', try_fix, disable_todo)
 
 
-def check_phdthesis(entry, try_fix):
+def check_phdthesis(entry, try_fix, _):
     """Check and fix phdthesis entries."""
-    check_field(entry, 'year', try_fix, try_find=True)
-    check_field(entry, 'address', try_fix, try_find=True)
-    check_field(entry, 'school', try_fix, try_find=True)
+    check_field(entry, 'year', try_fix, disable_todo, try_find=True)
+    check_field(entry, 'address', try_fix, disable_todo, try_find=True)
+    check_field(entry, 'school', try_fix, disable_todo, try_find=True)
 
 
 ENTRY_CHECKS = {
@@ -684,7 +685,7 @@ def normalize_authors(author_field):
     return " and ".join(new_authors)
 
 
-def check_database(database, try_fix):
+def check_database(database, try_fix, disable_todo):
     """Check the database entries.
 
     Goes through the bib database and checks if everything is
@@ -711,7 +712,7 @@ def check_database(database, try_fix):
         cache_field(entry, 'journal', journals)
         cache_field(entry, 'booktitle', booktitles)
 
-        check_field(entry, 'author', try_fix)
+        check_field(entry, 'author', try_fix, disable_todo)
 
         if 'title' in entry:
             norm_title = normalize_title(entry['title'])
@@ -723,11 +724,11 @@ def check_database(database, try_fix):
                 titles[norm_title].append(entry['ID'])
             else:
                 titles[norm_title] = [entry['ID']]
-        check_field(entry, 'title', try_fix)
+        check_field(entry, 'title', try_fix, disable_todo)
 
         entry_type = entry['ENTRYTYPE']
         if entry_type in ENTRY_CHECKS:
-            ENTRY_CHECKS[entry_type](entry, try_fix)
+            ENTRY_CHECKS[entry_type](entry, try_fix, disable_todo)
 
     return authors, journals, booktitles
 
@@ -791,6 +792,9 @@ def main():
         "--try-fix", default=False, action="store_true",
         help="Flag to search information to fix the database.")
     parser.add_argument(
+        "--disable-todo", default=False, action="store_true",
+        help="Flag to disable TODO.")
+    parser.add_argument(
         "--anthologies", type=str, nargs='+',
         help="List of BibTeX files with know papers.")
     args = parser.parse_args()
@@ -799,7 +803,7 @@ def main():
         load_anthologies(args.anthologies)
     bib_database = bibtexparser.load(args.input, get_bibparser())
     cache_journal_issn(bib_database)
-    authors, journals, booktitles = check_database(bib_database, args.try_fix)
+    authors, journals, booktitles = check_database(bib_database, args.try_fix, args.disable_todo)
 
     look_for_misspellings(authors, 'Authors')
     look_for_misspellings(journals, 'Journals')
