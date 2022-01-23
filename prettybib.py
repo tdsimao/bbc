@@ -156,7 +156,7 @@ def check_pages(entry, _):
     return False
 
 
-def check_isbn(entry, try_fix, _):
+def check_isbn(entry, try_fix):
     """Check and format ISBN.
 
     More information about ISBN:
@@ -234,7 +234,7 @@ def _fix_based_on_isbn(isbn_string, entry):
 ISSN_REGEX = re.compile(r"^\d{4}-?\d{3}[\dxX]$")
 
 
-def check_issn(entry, try_fix, _):
+def check_issn(entry, try_fix):
     """Check ISSN number."""
     issn_str = entry['issn']
     if ISSN_REGEX.match(issn_str):
@@ -404,7 +404,7 @@ def search_crossref_for_doi(title):
 DOI_PREFIX = re.compile(r"^[0-9]{2}\.[0-9]{4,5}$")
 
 
-def check_doi(entry, try_fix, _):
+def check_doi(entry, try_fix):
     if 'doi' not in entry:
         return False
     doi_ok = True
