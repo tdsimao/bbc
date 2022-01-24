@@ -1,8 +1,8 @@
-# prettybib
+# bbc
 
 ## Synopsis
 
-`pretybib` is a tiny utility that checks some basic properties of you bibtex
+`bbc` is a tiny utility that checks some basic properties of you bibtex
 files, orders the entries in an alphabetical order and style them in a uniform
 way.
 
