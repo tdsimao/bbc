@@ -34,3 +34,6 @@ All prerequisities are listed in the `requirements.txt` file.
 The software is distributed under the [BSD
 License](https://opensource.org/licenses/BSD-3-Clause).
 
+## Acknowledgments
+
+This project is based on [prettybib](https://github.com/jlibovicky/prettybib).
