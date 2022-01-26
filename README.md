@@ -26,8 +26,8 @@ All prerequisities are listed in the `requirements.txt` file.
   and print bibtex
 - [`libisbn`](https://github.com/xlcnd/isbnlib) to work ISBNs and Google Books
 - [`SPARQLWrapper`](https://github.com/RDFLib/sparqlwrapper) to query DBpedia
-- [`termcolor`](https://pypi.python.org/pypi/termcolor) to have colored error
-  messages
+- [`termcolor`](https://pypi.python.org/pypi/termcolor) to have colored error messages
+- [`pycountry`](https://pypi.org/project/pycountry/) to query countries
 
 ## License
 
