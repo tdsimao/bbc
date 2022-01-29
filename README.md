@@ -22,8 +22,8 @@ and other information for books (from [Google Books](books.google.com)).
 
 All prerequisities are listed in the `requirements.txt` file.
 
-- [`bibtexparser`](https://github.com/sciunto-org/python-bibtexparser) to parse
-  and print bibtex
+- [`bibtexparser`](https://github.com/sciunto-org/python-bibtexparser) to parse and print bibtex
+- [`beautifulsoup4`](https://pypi.org/project/beautifulsoup4/) to scrape web pages
 - [`libisbn`](https://github.com/xlcnd/isbnlib) to work ISBNs and Google Books
 - [`SPARQLWrapper`](https://github.com/RDFLib/sparqlwrapper) to query DBpedia
 - [`termcolor`](https://pypi.python.org/pypi/termcolor) to have colored error messages
