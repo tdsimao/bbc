@@ -2,5 +2,5 @@ bibtexparser
 isbnlib
 termcolor
 SPARQLWrapper
-bs4
+beautifulsoup4
 pycountry
