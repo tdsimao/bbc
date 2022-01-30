@@ -814,7 +814,8 @@ def main():
     writer.order_by = ['author', 'year', 'title']
     writer.display_order = ['author', 'title', 'booktitle', 'journal']
     writer.align_values = True
-    args.output.write(writer.write(bib_database))
+    with args.output as f:
+        f.write(writer.write(bib_database))
 
 
 if __name__ == "__main__":
