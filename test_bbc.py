@@ -9,7 +9,7 @@ import io
 TMP_FILE = "test.out.bib"
 
 
-class TestStringMethods(unittest.TestCase):
+class IntegrationTest(unittest.TestCase):
     def test_parse_args(self):
         testargs = ["bbc", "--input", "test.bib", "--output", TMP_FILE]
         with patch.object(sys, "argv", testargs):
