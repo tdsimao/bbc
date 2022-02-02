@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch
 from bbc import main
 from os import remove
+from os import path
 import sys
 import io
 
@@ -19,7 +20,8 @@ class IntegrationTest(unittest.TestCase):
             self.assertListEqual(list(result), list(expected))
 
     def tearDown(self):
-        remove(TMP_FILE)
+        if path.exists(TMP_FILE):
+            remove(TMP_FILE)
 
 
 if __name__ == "__main__":
