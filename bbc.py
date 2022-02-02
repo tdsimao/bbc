@@ -577,7 +577,7 @@ def check_techreport(entry, try_fix, disable_todo):
     check_field(entry, 'url', try_fix, disable_todo)
 
 
-def check_phdthesis(entry, try_fix, _):
+def check_phdthesis(entry, try_fix, disable_todo):
     """Check and fix phdthesis entries."""
     check_field(entry, 'year', try_fix, disable_todo, try_find=True)
     check_field(entry, 'address', try_fix, disable_todo, try_find=True)
