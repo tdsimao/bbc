@@ -19,6 +19,14 @@ class IntegrationTest(unittest.TestCase):
         with open(TMP_FILE) as result, open("test_result.bib") as expected:
             self.assertListEqual(list(result), list(expected))
 
+    def test_disable_todo(self):
+        testargs = ["bbc", "--input", "test.bib", "--output", TMP_FILE, "--disable-todo"]
+        with patch.object(sys, "argv", testargs):
+            main()
+
+        with open(TMP_FILE) as result, open("test_result_no_todo.bib") as expected:
+            self.assertListEqual(list(result), list(expected))
+
     def tearDown(self):
         if path.exists(TMP_FILE):
             remove(TMP_FILE)
