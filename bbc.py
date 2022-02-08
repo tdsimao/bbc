@@ -792,8 +792,8 @@ def main():
         "--try-fix", default=False, action="store_true",
         help="Flag to search information to fix the database.")
     parser.add_argument(
-        "--disable-todo", default=False, action="store_true",
-        help="Flag to disable TODO.")
+        "--add-todo", default=False, action="store_true",
+        help="Flag to add TODO in missing fields.")
     parser.add_argument(
         "--anthologies", type=str, nargs='+',
         help="List of BibTeX files with know papers.")
@@ -803,7 +803,7 @@ def main():
         load_anthologies(args.anthologies)
     bib_database = bibtexparser.load(args.input, get_bibparser())
     cache_journal_issn(bib_database)
-    authors, journals, booktitles = check_database(bib_database, args.try_fix, args.disable_todo)
+    authors, journals, booktitles = check_database(bib_database, args.try_fix, not args.add_todo)
 
     look_for_misspellings(authors, 'Authors')
     look_for_misspellings(journals, 'Journals')
