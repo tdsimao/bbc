@@ -12,7 +12,7 @@ TMP_FILE = "test.out.bib"
 
 class IntegrationTest(unittest.TestCase):
     def test_parse_args(self):
-        testargs = ["bbc", "--input", "test.bib", "--output", TMP_FILE, "--add-todo"]
+        testargs = ["bbc", "test.bib", "--output", TMP_FILE, "--add-todo"]
         with patch.object(sys, "argv", testargs):
             main()
 
@@ -20,12 +20,13 @@ class IntegrationTest(unittest.TestCase):
             self.assertListEqual(list(result), list(expected))
 
     def test_disable_todo(self):
-        testargs = ["bbc", "--input", "test.bib", "--output", TMP_FILE]
+        testargs = ["bbc", "test.bib", "--output", TMP_FILE]
         with patch.object(sys, "argv", testargs):
             main()
 
         with open(TMP_FILE) as result, open("test_result_no_todo.bib") as expected:
             self.assertListEqual(list(result), list(expected))
+
 
     def tearDown(self):
         if path.exists(TMP_FILE):

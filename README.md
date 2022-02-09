@@ -8,7 +8,7 @@ way.
 
 ## Usage
 
-`./bbc.py --input=<bib_file> --output=<out_file>`
+`./bbc.py <bib_file> --output=<out_file>`
 
 The formated bibtex printed the `<out_file>` file, error messages on the
 standard error output. Missing fields which are required for the particular
