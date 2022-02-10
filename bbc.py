@@ -783,7 +783,7 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "input", type=argparse.FileType('r'), default=sys.stdin,
+        "input", type=argparse.FileType('r'),
         help="Input file, default is stdin.")
     parser.add_argument(
         "--output", type=argparse.FileType('w'), default=sys.stdout,
