@@ -16,7 +16,9 @@ The formated bibtex is printed in the `<out_file>` file, while error messages on
 
 Add the flag `--add-todo` to assign a `TODO` value to missing fields which are required for the particular types of entries:
 
-`./bbc.py <bib_file> --output=<out_file> --add-todo`
+```bash
+./bbc.py <bib_file> --output=<out_file> --add-todo
+```
 
 If you toggle option `--try-fix`, it will try to find missing ISSN and other
 informations about journals (from [DBpedia](http://wiki.dbpedia.org/)) or ISBN
