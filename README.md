@@ -2,9 +2,7 @@
 
 ## Synopsis
 
-`bbc` is a tiny utility that checks some basic properties of you bibtex
-files, orders the entries in an alphabetical order and style them in a uniform
-way.
+`bbc` is a tiny utility that checks some basic properties of you bibtex files, orders the entries in an alphabetical order and style them in a uniform way.
 
 ## Usage
 
@@ -20,9 +18,7 @@ Add the flag `--add-todo` to assign a `TODO` value to missing fields which are r
 ./bbc.py <bib_file> --output=<out_file> --add-todo
 ```
 
-If you toggle option `--try-fix`, it will try to find missing ISSN and other
-informations about journals (from [DBpedia](http://wiki.dbpedia.org/)) or ISBN
-and other information for books (from [Google Books](books.google.com)).
+If you toggle option `--try-fix`, it will try to find missing ISSN and other informations about journals (from [DBpedia](http://wiki.dbpedia.org/)) or ISBN and other information for books (from [Google Books](books.google.com)).
 
 ## Prerequisities
 
@@ -37,8 +33,7 @@ All prerequisities are listed in the `requirements.txt` file.
 
 ## License
 
-The software is distributed under the [BSD
-License](https://opensource.org/licenses/BSD-3-Clause).
+The software is distributed under the [BSD License](https://opensource.org/licenses/BSD-3-Clause).
 
 ## Acknowledgments
 
