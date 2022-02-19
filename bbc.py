@@ -793,7 +793,7 @@ def main():
         help="Flag to search information to fix the database.")
     parser.add_argument(
         "--add-todo", default=False, action="store_true",
-        help="Flag to add TODO in missing fields.")
+        help="Adds TODO for missing fields.")
     parser.add_argument(
         "--anthologies", type=str, nargs='+',
         help="List of BibTeX files with know papers.")
