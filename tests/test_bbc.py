@@ -16,15 +16,14 @@ class IntegrationTest(unittest.TestCase):
         with patch.object(sys, "argv", testargs):
             main()
 
-        with open(TMP_FILE) as result, open("test_result.bib") as expected:
+        with open(TMP_FILE) as result, open("tests/data/test_result.bib") as expected:
             self.assertListEqual(list(result), list(expected))
 
     def test_disable_todo(self):
         testargs = ["bbc", "test.bib", "--output", TMP_FILE]
         with patch.object(sys, "argv", testargs):
             main()
-
-        with open(TMP_FILE) as result, open("test_result_no_todo.bib") as expected:
+        with open(TMP_FILE) as result, open("tests/data/test_result_no_todo.bib") as expected:
             self.assertListEqual(list(result), list(expected))
 
 
