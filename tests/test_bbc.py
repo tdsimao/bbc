@@ -4,7 +4,8 @@ from bbc import main
 from os import remove
 from os import path
 import sys
-import io
+from io import StringIO
+from contextlib import redirect_stderr
 
 
 TMP_FILE = "test.out.bib"
@@ -14,7 +15,8 @@ class IntegrationTest(unittest.TestCase):
     def test_parse_args(self):
         testargs = ["bbc", "test.bib", "--output", TMP_FILE, "--add-todo"]
         with patch.object(sys, "argv", testargs):
-            main()
+            with redirect_stderr(StringIO()):
+                main()
 
         with open(TMP_FILE) as result, open("tests/data/test_result.bib") as expected:
             self.assertListEqual(list(result), list(expected))
@@ -22,7 +24,8 @@ class IntegrationTest(unittest.TestCase):
     def test_disable_todo(self):
         testargs = ["bbc", "test.bib", "--output", TMP_FILE]
         with patch.object(sys, "argv", testargs):
-            main()
+            with redirect_stderr(StringIO()):
+                main()
         with open(TMP_FILE) as result, open("tests/data/test_result_no_todo.bib") as expected:
             self.assertListEqual(list(result), list(expected))
 
