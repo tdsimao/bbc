@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "bbc"
+version = "0.1.0"
+description = "utility to check and format bibtex files"
+authors = ["tdsimao <tdsimao@users.noreply.github.com>"]
+license = "BSD-3"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+bibtexparser = "^1.2.0"
+isbnlib = "^3.10.9"
+termcolor = "^1.1.0"
+SPARQLWrapper = "^1.8.5"
+beautifulsoup4 = "^4.10.0"
+pycountry = "^22.1.10"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+bbc = 'bbc:main'
