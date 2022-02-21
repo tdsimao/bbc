@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "utility to check and format bibtex files"
 authors = ["tdsimao <tdsimao@users.noreply.github.com>"]
 license = "BSD-3"
+readme = README.md
 
 [tool.poetry.dependencies]
 python = "^3.6"
