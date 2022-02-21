@@ -7,6 +7,8 @@ license = "BSD-3"
 
 readme = "README.md"
 
+repository = "https://github.com/tdsimao/bbc/"
+
 [tool.poetry.dependencies]
 python = "^3.6"
 bibtexparser = "^1.2.0"
