@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bbc"
-version = "0.1.0"
+version = "0.1.1"
 description = "utility to check and format bibtex files"
 authors = ["tdsimao <tdsimao@users.noreply.github.com>"]
 license = "BSD-3"
