@@ -1,6 +1,0 @@
-bibtexparser
-isbnlib
-termcolor
-SPARQLWrapper
-beautifulsoup4
-pycountry

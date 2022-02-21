@@ -32,7 +32,7 @@ pipx install .
 
 ## Prerequisities
 
-All prerequisities are listed in the `requirements.txt` file.
+This utility uses the following packages.
 
 - [`bibtexparser`](https://github.com/sciunto-org/python-bibtexparser) to parse and print bibtex
 - [`beautifulsoup4`](https://pypi.org/project/beautifulsoup4/) to scrape web pages
