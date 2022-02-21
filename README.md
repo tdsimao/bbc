@@ -23,11 +23,10 @@ If you toggle option `--try-fix`, it will try to find missing ISSN and other inf
 
 ## How to install
 
-1. Clone this project.
-2. Using `pipx` you can install the utility from the main folder:
+Using `pipx`:
 
 ```bash
-pipx install .
+pipx install bbc
 ```
 
 ## Prerequisities
