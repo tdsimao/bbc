@@ -7,7 +7,7 @@
 ## Usage
 
 ```bash
-./bbc.py <bib_file> --output=<out_file>
+bbc <bib_file> --output=<out_file>
 ```
 
 The formated bibtex is printed in the `<out_file>` file, while error messages on the standard error output.
@@ -15,7 +15,7 @@ The formated bibtex is printed in the `<out_file>` file, while error messages on
 Add the flag `--add-todo` to assign a `TODO` value to missing fields which are required for the particular types of entries:
 
 ```bash
-./bbc.py <bib_file> --output=<out_file> --add-todo
+bbc <bib_file> --output=<out_file> --add-todo
 ```
 
 If you toggle option `--try-fix`, it will try to find missing ISSN and other informations about journals (from [DBpedia](http://wiki.dbpedia.org/)) or ISBN and other information for books (from [Google Books](books.google.com)).
