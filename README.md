@@ -20,6 +20,16 @@ bbc <bib_file> --output=<out_file> --add-todo
 
 If you toggle option `--try-fix`, it will try to find missing ISSN and other informations about journals (from [DBpedia](http://wiki.dbpedia.org/)) or ISBN and other information for books (from [Google Books](books.google.com)).
 
+
+## How to install
+
+1. Clone this project.
+2. Using `pipx` you can install the utility from the main folder:
+
+```bash
+pipx install .
+```
+
 ## Prerequisities
 
 All prerequisities are listed in the `requirements.txt` file.
