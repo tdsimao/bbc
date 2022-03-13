@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-`bbc` is a tiny utility that checks some basic properties of you bibtex files, orders the entries in an alphabetical order and style them in a uniform way.
+`bbc` is a tiny utility that checks some basic properties of your bibtex files, orders the entries alphabetically and styles them uniformly.
 
 ## Usage
 
